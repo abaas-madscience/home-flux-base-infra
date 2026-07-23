@@ -23,7 +23,7 @@ spec:
   sync:
     interval: 1m
     kind: GitRepository
-    path: ./
-    ref: refs/heads/main
-    url: git@github.com:abaas-madscience/home-flux-base-infra.git
+    path: "./"
+    ref: "refs/heads/main"
+    url: "https://github.com/abaas-madscience/home-flux-base-infra.git"
   wait: true
