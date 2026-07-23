@@ -1,0 +1,29 @@
+---
+apiVersion: fluxcd.controlplane.io/v1
+kind: FluxInstance
+metadata:
+  name: flux
+  namespace: flux-system
+spec:
+  cluster:
+    domain: cluster.local
+    multitenant: false
+    multitenantWorkloadIdentity: false
+    networkPolicy: true
+    type: kubernetes
+  components:
+  - source-controller
+  - kustomize-controller
+  - helm-controller
+  - notification-controller
+  distribution:
+    registry: ghcr.io/fluxcd
+    version: 2.x
+  migrateResources: true
+  sync:
+    interval: 1m
+    kind: GitRepository
+    path: ./
+    ref: refs/heads/main
+    url: git@github.com:abaas-madscience/home-flux-base-infra.git
+  wait: true
