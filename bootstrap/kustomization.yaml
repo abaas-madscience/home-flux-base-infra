@@ -4,3 +4,4 @@ resources:
 - gitrepo.yaml
 - 00-infra-operators.yaml
 - 10-infra-configs.yaml
+- 20-infra-storage.yaml
