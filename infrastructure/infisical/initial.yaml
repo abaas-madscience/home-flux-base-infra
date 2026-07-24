@@ -1,0 +1,32 @@
+apiVersion: secrets.infisical.com/v1alpha1
+kind: InfisicalSecret
+metadata:
+  name: global-cluster-secrets
+  namespace: flux-system
+spec:
+  # Your self-hosted domain
+  hostAPI: https://infisicial.datakube.org/api
+  
+  # Resync frequency
+  resyncInterval: 60
+  
+  # Authentication configuration
+  authentication:
+    universalAuth:
+      credentialsRef:
+        secretName: infisical-credentials
+        secretNamespace: flux-system
+      clientIdKey: clientId
+      clientSecretKey: clientSecret
+
+  # Target Secret in Kubernetes
+  managedSecretReference:
+    secretName: cluster-global-env
+    secretNamespace: flux-system
+    creationPolicy: Owner
+
+  # Target Infisical Project Path
+  managedSecretScope:
+    projectSlug: "your-project-slug"
+    environmentSlug: "prod" # or dev, staging
+    secretPath: "/"
