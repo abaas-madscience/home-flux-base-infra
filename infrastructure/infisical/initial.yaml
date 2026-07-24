@@ -4,10 +4,10 @@ metadata:
   name: global-cluster-secrets
   namespace: flux-system
 spec:
-  # Your self-hosted domain
+  # Self-hosted Infisical URL
   hostAPI: https://infisicial.datakube.org/api
   
-  # Resync frequency
+  # Resync frequency (seconds)
   resyncInterval: 60
   
   # Authentication configuration
@@ -16,8 +16,6 @@ spec:
       credentialsRef:
         secretName: infisical-credentials
         secretNamespace: flux-system
-      clientIdKey: clientId
-      clientSecretKey: clientSecret
 
   # Target Secret in Kubernetes
   managedSecretReference:
@@ -26,7 +24,6 @@ spec:
     creationPolicy: Owner
 
   # Target Infisical Project Path
-  managedSecretScope:
-    projectSlug: "talos-8-r-ud"
-    environmentSlug: "prod" # or dev, staging
-    secretPath: "/"
+  projectSlug: "talos-8-r-ud"
+  environmentSlug: "prod"
+  secretPath: "/"
