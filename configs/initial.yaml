@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   # Self-hosted Infisical URL
-  hostAPI: https://infisicial.datakube.org/api
+  hostAPI: https://infisical.datakube.org/api
   
   # Resync frequency (seconds)
   resyncInterval: 60
