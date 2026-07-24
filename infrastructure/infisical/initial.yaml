@@ -27,6 +27,6 @@ spec:
 
   # Target Infisical Project Path
   managedSecretScope:
-    projectSlug: "your-project-slug"
+    projectSlug: "talos-8-r-ud"
     environmentSlug: "prod" # or dev, staging
     secretPath: "/"
