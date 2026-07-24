@@ -10,20 +10,19 @@ spec:
   # Resync frequency (seconds)
   resyncInterval: 60
   
-  # Authentication configuration
+  # Authentication & Scope
   authentication:
     universalAuth:
       credentialsRef:
         secretName: infisical-credentials
         secretNamespace: flux-system
+      secretsScope:
+        projectSlug: "talos-8-r-ud"
+        envSlug: "prod"
+        secretsPath: "/"
 
   # Target Secret in Kubernetes
   managedSecretReference:
     secretName: cluster-global-env
     secretNamespace: flux-system
     creationPolicy: Owner
-
-  # Target Infisical Project Path
-  projectSlug: "talos-8-r-ud"
-  environmentSlug: "prod"
-  secretPath: "/"
