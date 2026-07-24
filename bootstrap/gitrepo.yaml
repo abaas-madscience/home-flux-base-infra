@@ -1,0 +1,11 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: home-base-infra-source
+  namespace: flux-system
+spec:
+  interval: 2m
+  url: https://github.com/abaas-madscience/home-flux-base-infra.git
+  ref:
+    branch: main

@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: proxmox-csi-plugin
-      version: "0.5.9"  # Or exact chart release version
+      version: "0.5.9"
       sourceRef:
         kind: HelmRepository
         name: proxmox-csi
@@ -21,7 +21,7 @@ spec:
     # Optional nodeSelector / tolerations if needed for control-plane
     storageClass:
       - name: proxmox-data
-        storage: local-lvm  # Your PVE storage pool
-        type: lvm-thin      # raw, zfs, lvm, lvm-thin
+        storage: local-lvm
+        type: lvm-thin
         reclaimPolicy: Delete
         isDefault: true

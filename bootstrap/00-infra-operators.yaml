@@ -1,0 +1,14 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: 00-infra-operators
+  namespace: flux-system
+spec:
+  interval: 10m
+  timeout: 10m
+  path: ../00-infra-operators
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-base-infra-source

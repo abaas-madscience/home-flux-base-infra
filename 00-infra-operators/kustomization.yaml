@@ -7,4 +7,3 @@ resources:
 #  - argocd
 #  - kyverno
   - flux
-  - csi-pve-driver
