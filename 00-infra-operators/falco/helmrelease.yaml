@@ -1,0 +1,23 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: falco-operator
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: falco-security
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: falco-operator
+        namespace: flux-system
+      version: 0.3.1
+  install:
+    createNamespace: true
+  interval: 1m0s
+  timeout: 10m
+  releaseName: falco
+  storageNamespace: falco
+  targetNamespace: falco

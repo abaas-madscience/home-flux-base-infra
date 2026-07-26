@@ -8,3 +8,4 @@ resources:
 #  - kyverno
   - flux
   - csi-pve-driver
+  - falco
