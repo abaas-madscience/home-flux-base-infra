@@ -4,8 +4,8 @@ resources:
   - cert-manager
   - cilium
   - infisical
-#  - argocd
 #  - kyverno
   - flux
   - csi-pve-driver
   - falco
+  - victoria

@@ -1,0 +1,245 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: victoria-metrics-operator
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: victoria-metrics-operator
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: victoria-operator
+        namespace: flux-system
+  install:
+    createNamespace: true
+  interval: 1m0s
+  releaseName: victoria-metrics-operator
+  storageNamespace: monitoring
+  targetNamespace: monitoring
+  values:
+    admissionWebhooks:
+      annotations: {}
+      certManager:
+        ca:
+          commonName: ca.validation.victoriametrics
+          duration: 63800h0m0s
+          secretTemplate: {}
+          subject: {}
+        cert:
+          commonName: ""
+          duration: 45800h0m0s
+          secretTemplate: {}
+          subject: {}
+        enabled: false
+        issuer: {}
+      disabledFor: []
+      enabled: true
+      keepTLSSecret: true
+      policy: Fail
+      tls:
+        caCert: null
+        cert: null
+        key: null
+    affinity: {}
+    allowedMetricsEndpoints:
+    - /metrics
+    - /metrics/resources
+    annotations: {}
+    command: []
+    configReloader:
+      image: {}
+    crds:
+      annotations: {}
+      cleanup:
+        enabled: false
+        image:
+          pullPolicy: IfNotPresent
+          repository: registry.k8s.io/kubectl
+          tag: ""
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 56Mi
+      enabled: true
+      plain: false
+      upgrade:
+        affinity: {}
+        annotations: {}
+        busybox:
+          image:
+            pullPolicy: IfNotPresent
+            repository: busybox
+            tag: latest
+        enabled: false
+        env: []
+        extraVolumeMounts: []
+        extraVolumes: []
+        forceConflicts: false
+        kubectl:
+          image:
+            pullPolicy: IfNotPresent
+            repository: registry.k8s.io/kubectl
+            tag: ""
+        labels: {}
+        nodeSelector: {}
+        podAnnotations: {}
+        podLabels: {}
+        podSecurityContext:
+          enabled: true
+          fsGroup: 65534
+          runAsGroup: 65534
+          runAsNonRoot: true
+          runAsUser: 65534
+          seccompProfile:
+            type: RuntimeDefault
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+        serviceAccount:
+          annotations: {}
+          automountServiceAccountToken: true
+          create: true
+          labels: {}
+          name: ""
+        tolerations: []
+        topologySpreadConstraints: []
+    dnsPolicy: ""
+    env: []
+    envFrom: []
+    extraArgs: {}
+    extraContainers: []
+    extraHostPathMounts: []
+    extraLabels: {}
+    extraObjects: []
+    extraVolumeMounts: []
+    extraVolumes: []
+    fullnameOverride: ""
+    global:
+      cluster:
+        dnsDomain: cluster.local.
+      compatibility:
+        openshift:
+          adaptSecurityContext: auto
+      extraAnnotations: {}
+      extraLabels: {}
+      image:
+        registry: ""
+      imagePullSecrets: []
+    hostNetwork: false
+    image:
+      pullPolicy: IfNotPresent
+      registry: ""
+      repository: victoriametrics/operator
+      tag: ""
+      variant: ""
+    imagePullSecrets: []
+    lifecycle: {}
+    logLevel: info
+    nameOverride: ""
+    nodeSelector: {}
+    operator:
+      disable_prometheus_converter: false
+      enable_converter_ownership: false
+      gateway_support: false
+      openshift_compatibility: false
+      prometheus_converter_add_argocd_ignore_annotations: false
+      vpa_support: false
+    podDisruptionBudget:
+      enabled: false
+      labels: {}
+      maxUnavailable: 0
+      minAvailable: 0
+      unhealthyPodEvictionPolicy: null
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 2000
+      runAsNonRoot: true
+      runAsUser: 1000
+    priorityClassName: ""
+    probe:
+      liveness:
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 15
+        tcpSocket:
+          port: probe
+        timeoutSeconds: 5
+      readiness:
+        failureThreshold: 3
+        httpGet:
+          port: probe
+        initialDelaySeconds: 5
+        periodSeconds: 15
+        timeoutSeconds: 5
+      startup: {}
+    rbac:
+      aggregatedClusterRoles:
+        enabled: true
+        labels:
+          admin:
+            rbac.authorization.k8s.io/aggregate-to-admin: "true"
+          view:
+            rbac.authorization.k8s.io/aggregate-to-view: "true"
+      create: true
+    replicaCount: 1
+    resources: {}
+    runtimeClassName: ""
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      enabled: true
+      readOnlyRootFilesystem: true
+    service:
+      annotations: {}
+      clusterIP: ""
+      externalIPs: ""
+      externalTrafficPolicy: ""
+      healthCheckNodePort: ""
+      ipFamilies: []
+      ipFamilyPolicy: ""
+      labels: {}
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      nodePort: ""
+      servicePort: 8080
+      trafficDistribution: ""
+      type: ClusterIP
+      webhookPort: 9443
+    serviceAccount:
+      automountServiceAccountToken: true
+      create: true
+      name: ""
+    serviceMonitor:
+      annotations: {}
+      basicAuth: {}
+      enabled: false
+      extraLabels: {}
+      interval: ""
+      relabelings: []
+      scheme: ""
+      scrapeTimeout: ""
+      tlsConfig: {}
+      vm: true
+    shareProcessNamespace: false
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    terminationGracePeriodSeconds: 30
+    tolerations: []
+    topologySpreadConstraints: []
+    watchNamespaces: []
